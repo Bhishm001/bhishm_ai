@@ -1,0 +1,5 @@
+
+body{font-family:Arial,sans-serif;max-width:900px;margin:auto;padding:20px}
+textarea{width:100%;height:120px}
+button{padding:10px 20px;margin-top:10px}
+#answer{margin-top:20px;border:1px solid #ccc;padding:15px}
