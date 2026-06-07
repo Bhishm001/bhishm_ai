@@ -7,19 +7,29 @@ async function askAI() {
   try {
 
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AQ.Ab8RN6IlxTLzr1YFvV-xEj9CjAhk2oHbIAMzJrRHG1B_mJHeGw",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          contents: [
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-goog-api-key": "AQ.Ab8RN6K3zRHL3A5G5NMptSWy1TSqcqnWH3hwTRNc2QZQebPhKA"
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [
             {
-              parts: [
-                {
-                  text: q
-                }
+              text: q
+            }
+          ]
+        }
+      ]
+    })
+  }
+);
+
+const data = await response.json();
+console.log(data);
               ]
             }
           ]
