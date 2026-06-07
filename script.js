@@ -14,16 +14,32 @@ function startListening() {
     recognition.start();
 }
 
-function askAI() {
+async function askAI() {
+
     const q = document.getElementById("question").value;
 
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=YOUR_API_KEY",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: q
+            }]
+          }]
+        })
+      }
+    );
+
+    const data = await response.json();
+
     const answer =
-        "Hello Bhishm. I heard you say: " + q;
+      data.candidates[0].content.parts[0].text;
 
-    document.getElementById("answer").innerHTML = answer;
-
-    const speech = new SpeechSynthesisUtterance(answer);
-    speech.lang = "en-US";
-
-    window.speechSynthesis.speak(speech);
+    document.getElementById("answer").innerHTML =
+      answer;
 }
